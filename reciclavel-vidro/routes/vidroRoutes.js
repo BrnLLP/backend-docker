@@ -6,9 +6,9 @@ const router = express.Router();
 
 app.post('/vidros', async (req, res) => {
   try {
-    const papel = new Papel(req.body);
-    await papel.save();
-    res.status(201).json(papel);
+    const Vidro = new Papel(req.body);
+    await vidro.save();
+    res.status(201).json(vidro);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

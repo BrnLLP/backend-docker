@@ -4,7 +4,7 @@ const { ObjectId } = mongoose.Types;
 const Papel = require('../models/papel');
 const router = express.Router();
 
-app.post('/papeis', async (req, res) => {
+router.post('/papeis', async (req, res) => {
   try {
     const papel = new Papel(req.body);
     await papel.save();

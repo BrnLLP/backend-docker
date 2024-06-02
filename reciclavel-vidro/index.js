@@ -1,5 +1,7 @@
 const express = require('express');
-const metalRoutes = require('./routes/vidroRoutes');
+const mongoose = require("mongoose");
+const vidroRoutes = require('./routes/vidroRoutes');
+const app = express();
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
@@ -12,7 +14,7 @@ mongoose.connect(process.env.MONGODB_URI, {
   console.error('Erro ao conectar ao MongoDB Atlas:', error);
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3004;
 
 // Middleware
 app.use(express.json());

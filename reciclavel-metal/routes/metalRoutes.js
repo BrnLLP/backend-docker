@@ -4,7 +4,7 @@ const Metal = require('../models/metal');
 const { ObjectId } = mongoose.Types;
 const router = express.Router();
 
-app.post('/metais', async (req, res) => {
+router.post('/metais', async (req, res) => {
   try {
     const metal = new Metal(req.body);
     await metal.save();

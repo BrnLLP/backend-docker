@@ -11,7 +11,7 @@ services:
     networks:
       - minha-rede
 
-reciclavel-papel:
+  reciclavel-papel:
     build: ./reciclavel-papel
     ports:
       - "3002:3002"
@@ -20,7 +20,7 @@ reciclavel-papel:
     networks:
       - minha-rede
 
-reciclavel-plastico:
+  reciclavel-plastico:
     build: ./reciclavel-plastico
     ports:
       - "3003:3003"
@@ -29,7 +29,7 @@ reciclavel-plastico:
     networks:
       - minha-rede
 
-reciclavel-vidro:
+  reciclavel-vidro:
     build: ./reciclavel-vidro
     ports:
       - "3004:3004"

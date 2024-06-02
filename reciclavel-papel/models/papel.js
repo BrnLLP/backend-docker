@@ -7,4 +7,4 @@ const papelSchema = new mongoose.Schema({
   dataReciclagem: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('Papel', PapelSchema);  
+module.exports = mongoose.model('Papel', papelSchema);  

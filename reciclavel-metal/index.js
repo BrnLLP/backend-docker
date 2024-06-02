@@ -1,7 +1,8 @@
 const express = require('express');
 const metalRoutes = require('./routes/metalRoutes');
+const app = express();
 
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect("mongodb+srv://eu:SENHA@cluster0.t4wiie6.mongodb.net/reciclagem?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
