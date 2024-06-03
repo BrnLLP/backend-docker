@@ -1,10 +1,10 @@
-const express = require('express');
+const express = require("express");
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Types;
-const Papel = require('../models/papel');
+const Papel = require("../models/papel");
 const router = express.Router();
 
-router.post('/papeis', async (req, res) => {
+router.post("/papeis", async (req, res) => {
   try {
     const papel = new Papel(req.body);
     await papel.save();
@@ -13,6 +13,22 @@ router.post('/papeis', async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
+
+router.get("/papeis/estoque", async (req, res) => {
+  try {
+    const estoque = await Papel.aggregate([
+      {
+        $group: { _id: null, total: { $sum: { $toDouble: "$peso" } } },
+      },
+    ]);
+
+    res.status(200).json(estoque);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ erro: error });
+  }
+});
+
 router.get("/papeis", async (req, res) => {
   try {
     const papeis = await Papel.find();

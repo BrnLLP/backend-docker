@@ -1,10 +1,10 @@
-const express = require('express');
+const express = require("express");
 const mongoose = require("mongoose");
-const Plastico = require('../models/plastico');
+const Plastico = require("../models/plastico");
 const { ObjectId } = mongoose.Types;
 const router = express.Router();
 
-router.post('/plasticos', async (req, res) => {
+router.post("/plasticos", async (req, res) => {
   try {
     const plastico = new Plastico(req.body);
     await plastico.save();
@@ -13,6 +13,22 @@ router.post('/plasticos', async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
+
+router.get("/plasticos/estoque", async (req, res) => {
+  try {
+    const estoque = await Plastico.aggregate([
+      {
+        $group: { _id: null, total: { $sum: { $toDouble: "$peso" } } },
+      },
+    ]);
+
+    res.status(200).json(estoque);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ erro: error });
+  }
+});
+
 router.get("/plasticos", async (req, res) => {
   try {
     const plasticos = await Plastico.find();
@@ -61,6 +77,5 @@ router.patch("/plasticos/:id", (req, res, next) => {
     res.status(500).json({ error: "Id inválido" });
   }
 });
-
 
 module.exports = router;
