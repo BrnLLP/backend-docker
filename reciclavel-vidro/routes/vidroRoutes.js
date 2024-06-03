@@ -1,19 +1,23 @@
 const express = require('express');
-const mongoose = require("mongoose"); 
+const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Types;
-const Vidro = require('../models/vidro');
+const Vidro = require('../models/vidro'); 
 const router = express.Router();
 
-app.post('/vidros', async (req, res) => {
+
+// POST /vidros
+router.post('/vidros', async (req, res) => {
   try {
-    const Vidro = new Papel(req.body);
+    const vidro = new Vidro(req.body); // 
     await vidro.save();
     res.status(201).json(vidro);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
-router.get("/vidros", async (req, res) => {
+
+// GET /vidros
+router.get('/vidros', async (req, res) => {
   try {
     const vidros = await Vidro.find();
     res.status(200).json(vidros);
@@ -22,16 +26,18 @@ router.get("/vidros", async (req, res) => {
   }
 });
 
-router.get("/vidros/:id", async (req, res) => {
+// GET /vidros/:id
+router.get('/vidros/:id', async (req, res) => {
   try {
-    const Vidro = await Vidro.findOne({ code: req.params.code });
-    res.status(200).json(Vidro);
+    const vidro = await Vidro.findById(req.params.id); 
+    res.status(200).json(vidro);
   } catch (error) {
     res.status(500).json({ erro: error });
   }
 });
 
-router.delete("/vidros/:id", (req, res, next) => {
+// DELETE /vidros/:id
+router.delete('/vidros/:id', (req, res, next) => {
   const id = req.params.id;
   Vidro.deleteOne({ _id: id })
     .exec()
@@ -45,7 +51,9 @@ router.delete("/vidros/:id", (req, res, next) => {
       });
     });
 });
-router.patch("/vidros/:id", (req, res, next) => {
+
+// PATCH /vidros/:id
+router.patch('/vidros/:id', (req, res, next) => {
   const updates = req.body;
   if (ObjectId.isValid(req.params.id)) {
     Vidro.updateOne({ _id: ObjectId(req.params.id) }, { $set: updates })
@@ -53,14 +61,11 @@ router.patch("/vidros/:id", (req, res, next) => {
         res.status(200).json(result);
       })
       .catch((err) => {
-        res
-          .status(500)
-          .json({ error: "Não foi possível atualizar o documento" });
+        res.status(500).json({ error: 'Não foi possível atualizar o documento' });
       });
   } else {
-    res.status(500).json({ error: "Id inválido" });
+    res.status(500).json({ error: 'Id inválido' });
   }
 });
-
 
 module.exports = router;
