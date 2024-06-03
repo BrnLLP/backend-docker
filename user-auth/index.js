@@ -19,9 +19,11 @@ const PORT = process.env.PORT || 3005;
 // Middleware
 app.use(express.json());
 
+app.use(require("cors")());
+
 // Routes
 app.use('/', usuarioRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`UserAuth - Servidor rodando na porta ${PORT}`);
 });
