@@ -1,13 +1,25 @@
-version: '3'
+version: '3.8'
 
 services:
+  mongo:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+    networks:
+      - minha-rede
 
   reciclavel-metal:
     build: ./reciclavel-metal
     ports:
       - "3001:3001"
     environment:
-      - MONGODB_URI=mongodb+srv://eu:SENHA@cluster0.t4wiie6.mongodb.net/reciclagem?retryWrites=true&w=majority
+      - MONGODB_URI=mongodb://root:example@mongo:27017/reciclagem?authSource=admin
+    depends_on:
+      - mongo
     networks:
       - minha-rede
 
@@ -16,7 +28,9 @@ services:
     ports:
       - "3002:3002"
     environment:
-      - MONGODB_URI=mongodb+srv://eu:SENHA@cluster0.t4wiie6.mongodb.net/reciclagem?retryWrites=true&w=majority
+      - MONGODB_URI=mongodb://root:example@mongo:27017/reciclagem?authSource=admin
+    depends_on:
+      - mongo
     networks:
       - minha-rede
 
@@ -25,7 +39,9 @@ services:
     ports:
       - "3003:3003"
     environment:
-      - MONGODB_URI=mongodb+srv://eu:SENHA@cluster0.t4wiie6.mongodb.net/reciclagem?retryWrites=true&w=majority
+      - MONGODB_URI=mongodb://root:example@mongo:27017/reciclagem?authSource=admin
+    depends_on:
+      - mongo
     networks:
       - minha-rede
 
@@ -34,9 +50,12 @@ services:
     ports:
       - "3004:3004"
     environment:
-      - MONGODB_URI=mongodb+srv://eu:SENHA@cluster0.t4wiie6.mongodb.net/reciclagem?retryWrites=true&w=majority
+      - MONGODB_URI=mongodb://root:example@mongo:27017/reciclagem?authSource=admin
+    depends_on:
+      - mongo
     networks:
       - minha-rede
+<<<<<<< HEAD
 
   user-auth:
     build: ./user-auth
@@ -44,9 +63,13 @@ services:
       - "3006:3006"
     environment:
       - MONGODB_URI=mongodb+srv://eu:SENHA@cluster0.t4wiie6.mongodb.net/reciclagem?retryWrites=true&w=majority
+    depends_on:
+      - mongo
     networks:
       - minha-rede
   
+=======
+>>>>>>> 06ea83210b62a41dd89a77ca88c924c916f63c30
 
 networks:
   minha-rede:

@@ -1,8 +1,9 @@
 const express = require('express');
-const mongoose = require("mongoose");
-const vidroRoutes = require('./routes/vidroRoutes');
 const app = express();
+const vidroRoutes = require('./routes/vidroRoutes');
+const mongoose = require('mongoose');
 
+// Conectando ao MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -18,10 +19,8 @@ const PORT = process.env.PORT || 3004;
 
 // Middleware
 app.use(express.json());
-
-// Routes
-app.use('/', vidroRoutes);
+app.use('/api', vidroRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
