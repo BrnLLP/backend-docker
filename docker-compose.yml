@@ -56,11 +56,11 @@ services:
     networks:
       - minha-rede
   
-  
+
   user-auth:
     build: ./user-auth
     ports:
-      - "3006:3006"
+      - "3005:3005"
     environment:
       - MONGODB_URI=mongodb+srv://eu:SENHA@cluster0.t4wiie6.mongodb.net/reciclagem?retryWrites=true&w=majority
     depends_on:

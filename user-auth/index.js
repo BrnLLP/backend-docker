@@ -14,7 +14,7 @@ mongoose.connect("mongodb+srv://eu:SENHA@cluster0.t4wiie6.mongodb.net/reciclagem
   console.error('Erro ao conectar ao MongoDB Atlas:', error);
 });
 
-const PORT = process.env.PORT || 3006;
+const PORT = process.env.PORT || 3005;
 
 // Middleware
 app.use(express.json());
