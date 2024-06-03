@@ -17,9 +17,11 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 const PORT = process.env.PORT || 3004;
 
+app.use(require("cors")());
+
 // Middleware
 app.use(express.json());
-app.use('/api', vidroRoutes);
+app.use('/', vidroRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

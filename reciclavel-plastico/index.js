@@ -16,6 +16,8 @@ mongoose.connect("mongodb+srv://eu:SENHA@cluster0.t4wiie6.mongodb.net/reciclagem
 
 const PORT = process.env.PORT || 3003;
 
+app.use(require("cors")());
+
 // Middleware
 app.use(express.json());
 

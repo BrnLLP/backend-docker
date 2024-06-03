@@ -8,7 +8,7 @@ router.post('/metais', async (req, res) => {
   try {
     const metal = new Metal(req.body);
     await metal.save();
-    res.status(201).json(user);
+    res.status(201).json(metal);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

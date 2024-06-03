@@ -1,15 +1,14 @@
 const express = require('express');
 const mongoose = require("mongoose");
 const Plastico = require('../models/plastico');
-const app = express();
 const { ObjectId } = mongoose.Types;
 const router = express.Router();
 
-app.post('/plasticos', async (req, res) => {
+router.post('/plasticos', async (req, res) => {
   try {
-    const papel = new Papel(req.body);
-    await papel.save();
-    res.status(201).json(papel);
+    const plastico = new Plastico(req.body);
+    await plastico.save();
+    res.status(201).json(plastico);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
