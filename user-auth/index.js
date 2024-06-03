@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require("mongoose");
-const papelRoutes = require('./routes/usuarioRoutes');
+const usuarioRoutes = require('./routes/usuarioRoutes');
 const app = express();
 
 mongoose.connect("mongodb+srv://eu:SENHA@cluster0.t4wiie6.mongodb.net/reciclagem?retryWrites=true&w=majority", {
