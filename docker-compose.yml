@@ -65,6 +65,13 @@ services:
       - mongo
     networks:
       - minha-rede
+    
+  webapp:
+    build: ./webapp
+    ports: 
+      - "8080:8080"
+    networks: 
+      - minha-rede
   
 
 networks:
