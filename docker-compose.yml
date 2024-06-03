@@ -55,8 +55,8 @@ services:
       - mongo
     networks:
       - minha-rede
-<<<<<<< HEAD
-
+  
+  
   user-auth:
     build: ./user-auth
     ports:
@@ -68,8 +68,6 @@ services:
     networks:
       - minha-rede
   
-=======
->>>>>>> 06ea83210b62a41dd89a77ca88c924c916f63c30
 
 networks:
   minha-rede:
