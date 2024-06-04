@@ -1,4 +1,4 @@
-## Reciclo
+## Reciclagem
 
 ### Requerimentos
 
